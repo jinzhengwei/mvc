@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        td {min-width: 100px;text-align: center;}
+    </style>
+</head>
+<body>
+<table border="1px" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+    </tr>
+    <?php  foreach ($lists as $row) { ?>
+    <tr>
+        <td><?php echo $row['id']; ?></td>
+        <td><?php echo $row['name']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+</body>
+</html>

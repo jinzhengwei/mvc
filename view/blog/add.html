@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <!-- 模板 -->
+    <form action='index.php?c=Blog&a=doadd' method="post">
+        名字: <input type="" name="name"><br>
+         内容: <textarea name="content"></textarea><br>
+         分类: <select name="cate">
+            <?php foreach ($catelist as $cate) {?>
+            <option value="<?php echo $cate['id'];?>">
+            <?php echo $cate['name']?>
+            </option>	
+            
+            <?php}?>
+
+
+         </select>
+        <input type="submit" name="">
+    </form>
+</body>
+</html>

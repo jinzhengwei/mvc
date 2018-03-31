@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <!-- 模板 -->
+    <form action='index.php?c=Message&a=doedit' method="post">
+        名字： <input type="" name="name" value="<?php echo $messageinfo['name']; ?>"><br>
+        内容： <input type="" name="content" value="<?php echo $messageinfo['content']; ?>"><br>
+        <input type="hidden" name="id" value="<?php echo $messageinfo['id'] ?>">
+        <input type="submit" name="">
+    </form>
+</body>
+</html>

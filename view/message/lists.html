@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>
+    <?php if (!empty($_SESSION['me']['id']) ) { ?>
+        欢迎你-  <?php echo $_SESSION['me']['name']; ?>
+        <a href="index.php?c=User&a=logout">退出</a>
+    <?php } else { ?>
+        <a href="index.php?c=User&a=login">登录</a>
+    <?php } ?>
+</div>
+<div>
+	<a href='index.php?c=Message&a=add'>新增</a>
+</div>
+
+
+
+<?php foreach($data as $value) {?>
+ <span><?php echo $value['name'];?></span>
+ <br>
+  <span><?php echo $value['content'];?></span>
+  <br>
+  <a href='index.php?c=Message&a=edit&id=<?php echo $value['id'];?>'>修改</a>
+  <a href='index.php?c=Message&a=del&id=<?php echo $value['id'];?>'>删除</a>
+  <br><hr>
+  <?php } ?>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        td {min-width: 100px;text-align: center;}
+    </style>
+</head>
+<body>
+<table border="1px" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>id</td>
+        <td>title</td>
+        <td>content</td>
+        <td>cate</td>
+        <td>createtime</td>
+    </tr>
+    <?php  foreach ($lists as $row) { ?>
+    <tr>
+        <td><?php echo $row['id']; ?></td>
+        <td><?php echo $row['title']; ?></td>
+        <td><?php echo $row['content']; ?></td>
+        <td><?php echo $cateTmp[$row['category']]['name']; ?></td>
+        <td><?php echo $row['createtime']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+</body>
+</html>
