@@ -6,10 +6,27 @@
  	public function dologin(){
  			$phone = $_POST['phone'];
             $password = $_POST['password'];
-            $mysqli = new mysqli('127.0.0.1', 'root', '', 'test');
-            $sql="select * from user where phone='{$phone}'";
-            $query= $mysqli->query($sql);
-            $info = $query->fetch_array(MYSQLI_ASSOC);
+            $format=!empty($_POST['format'])? $_POST['format'] : 'html';
+            $info = D('user')->getUserInfoByPhone($phone);       
+            if($format= 'json'){
+                $result=array('error_code'=>0,'message'=>'','data'=>array());
+                if($format['password']=$password){
+                    $result['data']['user'] = D('user')->formatUser($info);
+                }else{
+                    $result['error_code']= 1;
+                    $result['message']='密码错误';
+
+                }
+                echo json_encode($result);
+
+            }else{
+                if ($info['password'] == $password) {
+                    unset($info['password']);
+                    $_SESSION['me'] = $info;
+                }
+                header('location:index.php?c=message&a=lists');
+            } 
+            }
             if ($info['password'] == $password){
             	unset($info['password']);
             	$_SESSION['me']= $info;
@@ -24,15 +41,13 @@
  		$name = $_POST['name'];
         $phone = $_POST['phone'];
         $password = $_POST['password'];
-        $mysqli = new mysqli('127.0.0.1', 'root', '', 'test');
-        $sql="select * from user where phone='{$phone}'";
-        $query= $mysqli->query($sql);
-        if ($query->num_rows > 0) {
+        $model = D('user');
+            $info = $model->getUserInfoByPhone($phone);
+        if (!empty($info)) {
             header('location:index.php?c=User&a=login');
             die();
             }
-            $sql="insert into user (name,phone,password) value ('{$name}','{$phone}','{$password}') ";
-           $query= $mysqli->query($sql);
+            $model->addUser($uname, $phone, $password);
            header('location:index.php?c=User&a=login');
  	}
  

@@ -5,6 +5,7 @@
     header("Content-type:text/html;charset=utf-8");
    include "./controller/{$c}Controller.class.php";
   include "./common/function.php";
+   $c = ucfirst($c);
    function __autoload($a) {
         include "./controller/{$a}.class.php";
     }

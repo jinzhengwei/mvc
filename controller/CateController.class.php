@@ -9,11 +9,11 @@
  		if(empty($name)){
  			die();
  		}
- 	    $status = D('Cate')->addCate(array('name'=>$name));
+ 	    $status = D('cate')->addCate(array('name'=>$name));
  		var_dump($status);
  	}
  	public function lists(){
- 		$lists=D('Cate')->getlists();
+ 		$lists=D('cate')->getlists();
  		include "./view/cate/lists.html";
 
  	}

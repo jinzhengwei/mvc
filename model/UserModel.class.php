@@ -2,10 +2,13 @@
     class UserModel {
         public $mysqli;
         public function __construct() {
-            $this->mysqli = new mysqli('127.0.0.1', 'root', '', 'test');
+             $config = C();
+            $this->mysqli = new mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_name']);
+            $this->mysqli->query('set names utf8');
+
         }
         public function getUserInfoByPhone($phone) {
-            $sql = "select * from zt_user where phone = '{$phone}' ";
+            $sql = "select * from user where phone = '{$phone}' ";
             $query = $this->mysqli->query($sql);
             $info = $query->fetch_array(MYSQLI_ASSOC);
             return $info;
@@ -15,5 +18,24 @@
             
             $query = $this->mysqli->query($sql);
             return $query;
+        }
+        public function getIntoById($id){
+            if(empty($id)){
+                return array()
+            }
+            $sql="select * from user where id ={$id}";
+            $query=$this->mysqli->query($sql)；
+            $res=$query->fetch_array(MYSQLI_ASSOC);
+            return $res;   
+    }
+        public function formatUser($value){
+            $item=array(
+            'userid'= $value['id'] ,
+            'username'= $value['name'],
+            'userimg'= $value['image']
+
+
+                );
+            return $item;
         }
     }
